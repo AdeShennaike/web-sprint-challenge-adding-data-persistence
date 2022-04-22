@@ -23,22 +23,3 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router
-
-// const projData = req.body;
-// projects.create(projData)
-//     .then(newProj => {
-//         if(newProj.project_completed === 0) {
-//             res.status(201).json({
-//                 ...newProj,
-//                 project_completed: false
-//             })
-//         } else {
-//             res.status(201).json({
-//                 ...newProj,
-//                 project_completed: true
-//             })
-//         }
-//     })
-//     .catch(err => {
-//         res.status(500).json(err)
-//     })
