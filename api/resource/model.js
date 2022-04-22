@@ -8,8 +8,6 @@ async function create(resource) {
 
 async function find() {
     const rows = await db('resources')
-    .select('resources.*')
-
     return rows
 }
 
