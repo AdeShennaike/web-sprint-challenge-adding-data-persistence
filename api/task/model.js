@@ -10,26 +10,8 @@ async function getById(id) {
   }
   
 async function create(project) {
-    // const [task_id] = db('tasks').insert(project)
-    // return getById(task_id)
-
-     await db('tasks')
-        .insert(project)
-    const newTask = await db('tasks')
-        .where('task_description', project.task_description)
-        .first()
-
-        if(newTask.task_completed === 0){
-            return {
-                ...newTask,
-                task_completed: false
-            }
-        } else {
-            return {
-                ...newTask,
-                task_completed: true
-            }
-        }
+    const [task_id] = await db('tasks').insert(project)
+    return getById(task_id)
 }
 
 async function find() {
