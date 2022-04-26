@@ -9,27 +9,22 @@ async function getById(id) {
     return rows;
   }
   
-async function create(project) {
-    const [task_id] = await db('tasks').insert(project)
+async function create(task) {
+    const [task_id] = await db('tasks').insert(task)
     return getById(task_id)
 }
 
 async function find() {
     const rows = await db('tasks as t')
     .leftJoin("projects as p", "p.project_id", "t.project_id")
-    .select(
-      "t.task_id",
-      "t.task_completed",
-      "t.task_notes",
-      "t.task_description",
-      "p.project_description",
-      "p.project_name")
+    .select("t.*", "p.project_description", "p.project_name")
 
     rows.map(row => {
         row.task_completed = !!row.task_completed;
         return row;
     })
-    return rows}
+    return rows
+}
 
 module.exports = {
     create,
